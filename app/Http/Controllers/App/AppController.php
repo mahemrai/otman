@@ -8,20 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
      * 
      * @return \Illuminate\Http\Response
      */
-	public function dashboard()
-	{
-		return view('app.dashboard', array(
-			'user' => Auth::user()
-		));
-	}
+    public function dashboard()
+    {
+        return view('app.dashboard', array(
+            'user' => Auth::user()
+        ));
+    }
 }

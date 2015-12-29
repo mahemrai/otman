@@ -8,11 +8,11 @@
 
         <style>
             body {
-            	padding-top: 70px;
+                padding-top: 70px;
             }
 
             .img-circle {
-            	width: 8%;
+                width: 8%;
             }
 
             .alert {

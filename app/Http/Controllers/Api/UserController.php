@@ -15,79 +15,79 @@ use Illuminate\Http\Response;
  */
 class UserController extends Controller
 {
-	public function __construct()
-	{
-	}
+    public function __construct()
+    {
+    }
 
     /**
      * @param  int $id
      * @param  \Illuminate\Http\Request $request
      * @return string
      */
-	public function update($id, Request $request)
-	{
-		$user = User::find($id);
+    public function update($id, Request $request)
+    {
+        $user = User::find($id);
 
-		if (isset($request->email)) {
-			$column = 'email';
-			$validator = Validator::make($request->all(), array(
-				'email' => 'required|email|max:255|unique:users'
-			));
+        if (isset($request->email)) {
+            $column = 'email';
+            $validator = Validator::make($request->all(), array(
+                'email' => 'required|email|max:255|unique:users'
+            ));
 
             if ($validator->fails()) {
-            	return array(
-            		'code'     => 3,
-            		'status'   => 'validation failed',
-            		'message' => $validator->errors()
-            	);
+                return array(
+                    'code'     => 3,
+                    'status'   => 'validation failed',
+                    'message' => $validator->errors()
+                );
             }
 
-			$user->email = $request->email;
-		}
+            $user->email = $request->email;
+        }
 
-		if (isset($request->password)) {
-			$column = 'password';
-			$this->validate($request, array(
-				'currentPassword' => 'required',
-				'newPassword'     => 'required|min:6'
-			));
+        if (isset($request->password)) {
+            $column = 'password';
+            $this->validate($request, array(
+                'currentPassword' => 'required',
+                'newPassword'     => 'required|min:6'
+            ));
 
-			$validator = Validator::make($request->all(), array(
-				'currentPassword' => 'required',
-				'newPassword'     => 'required|min:6'
-			));
+            $validator = Validator::make($request->all(), array(
+                'currentPassword' => 'required',
+                'newPassword'     => 'required|min:6'
+            ));
 
-			if ($validator->fails()) {
-				return array(
-					'code'     => 3
-					'status'   => 'validation failed',
-					'message' => $validator->errors()
-				);
-			}
+            if ($validator->fails()) {
+                return array(
+                    'code'     => 3
+                    'status'   => 'validation failed',
+                    'message' => $validator->errors()
+                );
+            }
 
-			if (Hash::check($request->currentPassword, $user->password)) {
-				$user->password = bcrypt($request->newPassword);
-			}
+            if (Hash::check($request->currentPassword, $user->password)) {
+                $user->password = bcrypt($request->newPassword);
+            }
 
-			return array(
-				'code'    => 2,
-				'status'  => 'error',
-				'message' => 'Current password you entered does not match our record. Try again.'
-			);
-		}
+            return array(
+                'code'    => 2,
+                'status'  => 'error',
+                'message' => 'Current password you entered does not match our record. Try again.'
+            );
+        }
 
-		if ($user->save()) {
-			return array(
-				'code'    => 1,
-				'status'  => 'ok',
-				'message' => ucfirst($column) . ' was succesfully updated.'
-			);
-		} else {
-			return array(
-				'code'    => 2
-				'status'  => 'error',
-				'message' => 'Cannot update ' . ucfirst($column) . '. Try again.'
-			);
-		}
-	}
+        if ($user->save()) {
+            return array(
+                'code'    => 1,
+                'status'  => 'ok',
+                'message' => ucfirst($column) . ' was succesfully updated.'
+            );
+        } else {
+            return array(
+                'code'    => 2
+                'status'  => 'error',
+                'message' => 'Cannot update ' . ucfirst($column) . '. Try again.'
+            );
+        }
+    }
 }

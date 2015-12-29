@@ -2,11 +2,11 @@
     {!! Form::label('salutation', 'Title:', array('class' => 'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! 
-        	Form::select('salutation', array(
-        	    'null' => 'Select your title',
-        	    'Mr'   => 'Mr',
-        	    'Miss' => 'Miss',
-        	    'Mrs'  => 'Mrs',
+            Form::select('salutation', array(
+                'null' => 'Select your title',
+                'Mr'   => 'Mr',
+                'Miss' => 'Miss',
+                'Mrs'  => 'Mrs',
             ), (isset($user->profile->salutation)) ? $user->profile->salutation : 'null', array('class' => 'form-control')) 
         !!}
     </div>
