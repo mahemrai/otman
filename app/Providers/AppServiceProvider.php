@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Otman\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
