@@ -69,7 +69,7 @@ class UserController extends Controller
     {
         $this->validate($request, array(
             'current_password'      => 'required',
-            'password'              => 'required|min:6',
+            'password'              => 'required|confirmed|min:6',
             'password_confirmation' => 'required|min:6|same:password'
         ));
 

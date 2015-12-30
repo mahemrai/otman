@@ -22,7 +22,6 @@ class UserProfile extends Model
         'firstname',
         'lastname', 
         'job_title',
-        'role',
         'profile_image'
     );
 }

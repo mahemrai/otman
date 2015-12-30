@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Otman\Events\SomeEvent' => [
             'Otman\Listeners\EventListener',
         ],
+        'Otman\Events\UserRegistered' => [
+            'Otman\Listeners\EmailRegistrationConfirmation'
+        ]
     ];
 
     /**

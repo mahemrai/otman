@@ -2,8 +2,10 @@
 
 namespace Otman\Http\Controllers\Auth;
 
+use Event;
 use Otman\User;
 use Validator;
+use Otman\Events\UserRegistered;
 use Otman\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -46,8 +48,9 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'email'                 => 'required|email|max:255|unique:users',
+            'password'              => 'required|confirmed|min:6',
+            'password_confirmation' => 'required|same:password|min:6'
         ]);
     }
 
@@ -59,9 +62,16 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'email'    => $data['email'],
             'password' => bcrypt($data['password']),
+            'role'     => 'user'
         ]);
+
+        if ($user) {
+            Event::fire(new UserRegistered($user));
+        }
+
+        return $user;
     }
 }

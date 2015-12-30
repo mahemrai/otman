@@ -30,6 +30,11 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+
+        if (is_null($user->profile)) {
+            return redirect('/profile')->with('user', $user);
+        }
+
         return view('entity.profile.show')->with('user', $user);
     }
 
@@ -51,7 +56,6 @@ class ProfileController extends Controller
         $profile->firstname = $request->firstname;
         $profile->lastname = $request->lastname;
         $profile->job_title = $request->job_title;
-        $profile->role = UserProfile::ROLE_USER;
 
         $user = Auth::User();
 
@@ -116,7 +120,7 @@ class ProfileController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function profileImage($id)
+    public function profileImage($id = null)
     {
         if (is_null($id)) {
             return view('entity.profile.image-upload');

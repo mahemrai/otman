@@ -2,8 +2,8 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-
-            @if (is_null($user->profile->profile_image))
+        
+            @if (is_null($user->profile) || is_null($user->profile->profile_image) || empty($user->profile->profile_image))
                 <a href="/profile-pic"><img class="img-circle" src="/images/no-profile-image.png"></a>
             @else
                 <a href="/profile-pic"><img class="img-circle" src="/images/profile-image/{{ $user->profile->profile_image }}"></a>
