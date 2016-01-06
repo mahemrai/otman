@@ -13,11 +13,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Otman\Events\SomeEvent' => [
-            'Otman\Listeners\EventListener',
-        ],
         'Otman\Events\UserRegistered' => [
             'Otman\Listeners\EmailRegistrationConfirmation'
+        ],
+        'Otman\Events\OvertimeRequested' => [
+            'Otman\Listeners\EmailOvertimeRequest'
         ]
     ];
 

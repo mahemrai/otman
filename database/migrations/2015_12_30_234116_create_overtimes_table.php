@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserProfileTable extends Migration
+class CreateOvertimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,13 @@ class CreateUserProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_profile', function (Blueprint $table) {
+        Schema::create('overtime', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('salutation', 10);
-            $table->string('firstname', 120);
-            $table->string('lastname', 120);
-            $table->string('job_title', 100);
-            $table->string('profile_image', 250);
-            $table->boolean('is_manager');
+            $table->date('request_date');
+            $table->text('description');
+            $table->string('logged_time', 5)->nullable();
+            $table->string('status', 20);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -34,6 +32,6 @@ class CreateUserProfileTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_profile');
+        Schema::drop('overtime');
     }
 }

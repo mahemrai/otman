@@ -22,6 +22,7 @@ class UserProfile extends Model
         'firstname',
         'lastname', 
         'job_title',
-        'profile_image'
+        'profile_image',
+        'is_manager'
     );
 }

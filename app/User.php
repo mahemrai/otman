@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['email', 'password', 'role'];
+    protected $fillable = ['email', 'password', 'role', 'manager_id'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -37,8 +37,16 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
+    /**
+     * @return \Otman\UserProfile
+     */
     public function profile()
     {
         return $this->hasOne('Otman\UserProfile');
+    }
+
+    public function getManager()
+    {
+        return static::find($this->manager_id);
     }
 }

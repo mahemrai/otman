@@ -3,10 +3,12 @@
 namespace Otman\Http\Controllers\Auth;
 
 use Event;
-use Otman\User;
 use Validator;
+
+use Otman\User;
 use Otman\Events\UserRegistered;
 use Otman\Http\Controllers\Controller;
+
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

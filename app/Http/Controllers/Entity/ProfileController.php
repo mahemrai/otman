@@ -4,7 +4,6 @@ namespace Otman\Http\Controllers\Entity;
 use File;
 use Image;
 use Input;
-use Validator;
 use Otman\User;
 use Otman\UserProfile;
 use Otman\Http\Controllers\Controller;
@@ -21,6 +20,7 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
     }
 
     /**
@@ -84,6 +84,7 @@ class ProfileController extends Controller
         $profile->firstname = $request->firstname;
         $profile->lastname = $request->lastname;
         $profile->job_title = $request->job_title;
+        $profile->is_manager = false;
 
         if ($request->role) {
             $profile->role = $request->role;

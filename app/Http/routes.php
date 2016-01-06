@@ -47,3 +47,9 @@ Route::get('my-email/{id}/edit', 'Entity\UserController@changeEmailForm');
 Route::patch('my-email/{id}/edit', 'Entity\UserController@updateEmail');
 Route::get('my-password/{id}/edit', 'Entity\UserController@changePasswordForm');
 Route::patch('my-password/{id}/edit', 'Entity\UserController@updatePassword');
+
+/**
+ * Overtime routes
+ */
+Route::get('user/{userId}/overtime', 'Entity\OvertimeController@newOvertime');
+Route::post('user/{userId}/overtime', 'Entity\OvertimeController@create');

@@ -12,7 +12,7 @@
             <a href="/dashboard"><i class="fa fa-home"></i> Home</a>
             <a href="/my-profile/{{ $user->id }}"><i class="fa fa-user"></i> Profile</a>
             <a href="#"><i class="fa fa-cog"></i> Settings</a>
-            <a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+            <a href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
         </div>
     </div>
 </nav>
