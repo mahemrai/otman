@@ -33,15 +33,16 @@ var userProfile = new Vue({
                 if (response.data.status === 1) {
                     this.processing = false;
                     this.alertMessage = response.data.message;
-                    this.showAlert = true;
+                    this.showSuccessAlert = true;
                     location.reload();
                 } else if(response.data.status === 2) {
                     this.processing = false;
                     this.alertMessage = response.data.message;
-                    this.showAlert = true;
+                    this.showErrorAlert = true;
                 } else {
                     this.procession = false;
                     this.alertMessage = response.data.message;
+                    this.showErrorAlert = true;
                 }
             });
         },

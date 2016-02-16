@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('jscripts')
+    <script src="/js/app/overtime-request.js"></script>
+@stop
+
 @section('content')
 
     @include('app.partials.user-menu', array('user' => $user))

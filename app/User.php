@@ -10,6 +10,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+/**
+ * @uses    \Illuminate\Database\Eloquent\Model
+ * @package Otman
+ * @author  Mahendra Rai
+ */
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
@@ -45,6 +50,17 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('Otman\UserProfile');
     }
 
+    /**
+     * @return \Otman\Overtime
+     */
+    public function overtimes()
+    {
+        return $this->hasMany('Otman\Overtime');
+    }
+
+    /**
+     * @return \Otman\User
+     */
     public function getManager()
     {
         return static::find($this->manager_id);

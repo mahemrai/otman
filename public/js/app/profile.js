@@ -1,25 +1,3 @@
-var overtimeRequest = new Vue({
-    debug: true,
-    el: '#datepicker',
-    components: {
-        'datepicker': VueStrap.datepicker
-    },
-    data() {
-        return {
-            disabled: [],
-            value: '2016-01-04',
-            format: ['yyyy-MM-dd']
-        }
-    },
-    watch: {
-        disabled() {
-            this.$.dp.getDateRange()
-        },
-        format(newV) {
-            this.value = this.$.dp.stringify(new Date(this.value))
-        }
-    }
-});
 Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
 
 var userProfile = new Vue({
@@ -55,15 +33,16 @@ var userProfile = new Vue({
                 if (response.data.status === 1) {
                     this.processing = false;
                     this.alertMessage = response.data.message;
-                    this.showAlert = true;
+                    this.showSuccessAlert = true;
                     location.reload();
                 } else if(response.data.status === 2) {
                     this.processing = false;
                     this.alertMessage = response.data.message;
-                    this.showAlert = true;
+                    this.showErrorAlert = true;
                 } else {
                     this.procession = false;
                     this.alertMessage = response.data.message;
+                    this.showErrorAlert = true;
                 }
             });
         },
@@ -87,4 +66,3 @@ var userProfile = new Vue({
         'alert' : VueStrap.alert
     }
 });
-//# sourceMappingURL=app.js.map

@@ -18,5 +18,5 @@ elixir(function(mix) {
         'vendor/vue-strap.min.js'
     ], 'public/js/vendor.js');
 
-    mix.scriptsIn('resources/assets/js/app', 'public/js/app.js');
+    mix.copy('resources/assets/js/app', 'public/js/app');
 });

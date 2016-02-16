@@ -1,5 +1,9 @@
-@if (isset($fail))
+@if (isset($fail) || !is_null(Session::get('fail')))
     <div class="alert alert-danger">
-        <p>{{ $fail }}</p>
+        @if (isset($fail))
+            <p>{{ $fail }}</p>
+        @else
+            <p>{{ Session::get('fail') }}
+        @endif
     </div>
 @endif

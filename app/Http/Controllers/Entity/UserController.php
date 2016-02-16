@@ -2,14 +2,15 @@
 namespace Otman\Http\Controllers\Entity;
 
 use Hash;
+use Auth;
 use Otman\User;
 use Otman\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 /**
- * @package Otman
  * @uses    \Otman\Http\Controllers\Controller
+ * @package Otman
  * @author  Mahendra Rai
  */
 class UserController extends Controller
@@ -86,5 +87,17 @@ class UserController extends Controller
         }
 
         return view('entity.user.change-password')->with('fail', 'Current password you entered does not match our record. Try again.');
+    }
+
+    /**
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function userPage($id)
+    {
+        if (strcasecmp(Auth::User()->role, 'admin') == 0) {
+            $client = User::find($id);
+            return view('entity.user.userPage')->with(array('user' => Auth::User(), 'client' => $client));
+        }
     }
 }

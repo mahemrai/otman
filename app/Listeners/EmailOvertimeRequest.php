@@ -5,6 +5,10 @@ use Otman\User;
 use Illuminate\Mail\Mailer;
 use Otman\Events\OvertimeRequested;
 
+/**
+ * @package Otman
+ * @author  Mahendra Rai
+ */
 class EmailOvertimeRequest
 {
     /**
@@ -13,7 +17,7 @@ class EmailOvertimeRequest
     protected $mailer;
 
     /**
-     * @param \Illuminate\Mail\Mailer $mailer
+     * @param \Illuminate\Mail\Mailer  $mailer
      */
     public function __construct(Mailer $mailer)
     {
@@ -21,7 +25,7 @@ class EmailOvertimeRequest
     }
 
     /**
-     * @param \Otman\Events\OvertimeRequested $event
+     * @param \Otman\Events\OvertimeRequested  $event
      */
     public function handle(OvertimeRequested $event)
     {
@@ -40,7 +44,7 @@ class EmailOvertimeRequest
     }
 
     /**
-     * @param  \Otman\User
+     * @param  \Otman\User  $user
      * @return string
      */
     protected function setMailingName(User $user)

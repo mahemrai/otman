@@ -28,6 +28,7 @@ Route::post('register', 'Auth\AuthController@postRegister');
  * Main application routes
  */
 Route::get('dashboard', 'App\AppController@dashboard');
+Route::get('users', 'App\AppController@users');
 
 /**
  * Profile routes
@@ -43,6 +44,7 @@ Route::post('profile-pic', 'Entity\ProfileController@uploadImage');
 /**
  * User routes
  */
+Route::get('users/{id}', 'Entity\UserController@userPage');
 Route::get('my-email/{id}/edit', 'Entity\UserController@changeEmailForm');
 Route::patch('my-email/{id}/edit', 'Entity\UserController@updateEmail');
 Route::get('my-password/{id}/edit', 'Entity\UserController@changePasswordForm');
@@ -53,3 +55,16 @@ Route::patch('my-password/{id}/edit', 'Entity\UserController@updatePassword');
  */
 Route::get('user/{userId}/overtime', 'Entity\OvertimeController@newOvertime');
 Route::post('user/{userId}/overtime', 'Entity\OvertimeController@create');
+
+/**
+ * API routes
+ */
+Route::get('api/user/{userId}/overtimes', 'Api\OvertimeController@get');
+Route::get('api/overtime/{overtimeId}', 'Api\OvertimeController@get');
+Route::patch('api/overtime/{id}', 'Api\OvertimeController@logTime');
+
+/**
+ * Admin routes
+ */
+Route::patch('user/{id}/role/edit', 'App\UserController@updateRole');
+Route::patch('profile/{id}/manager/edit', 'App\ProfileController@updateManagerStatus');

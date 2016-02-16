@@ -12,9 +12,9 @@ class Overtime extends Model
 {
     const STATUS_PENDING = 'Pending';
     const STATUS_APPROVED = 'Approved';
-    const STATUS_LOGGED = 'Logged';
     const STATUS_COMPLETED = 'Completed';
     const STATUS_IN_REVIEW = 'In Review';
+    const STATUS_DECLINED = 'Declined';
 
     /**
      * @var string
